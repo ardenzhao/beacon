@@ -14,7 +14,7 @@ test : \
   test_statistic.o \
   test_algorithm.o \
   test_utility.o
-	gcc -o test_common test_common.o test_statistic.o test_algorithm.o test_utility.o -L ./ -lcommon
+	gcc -o test_common test_common.o test_statistic.o test_algorithm.o test_utility.o -L ./ -lcommon -lm
 
 test_common.o :
 	gcc -c ./test/test_common.c -o $@
