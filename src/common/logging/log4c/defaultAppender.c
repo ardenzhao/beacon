@@ -75,4 +75,4 @@ static void doAppend(struct LogAppender* this0, struct LogEvent* ev) {
     fprintf(stderr, "%s:%d: ", ev->fileName, ev->lineNum);
     vfprintf(stderr, ev->fmt, ev->ap);
     fprintf(stderr, "\n");
-}
+
