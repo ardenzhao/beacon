@@ -33,7 +33,8 @@ static void doAppend(struct LogAppender* this, struct LogEvent* ev);
 static struct bc_log_appender {
     struct LogAppender appender;
     FILE* file;
-} bc_log_appender = { {doAppend }, NULL };
+    int to_stderr;
+} bc_log_appender = { {doAppend }, NULL, 1 };
 
 struct LogAppender* log_defaultLogAppender = &bc_log_appender.appender;
 
@@ -63,8 +64,15 @@ static void doAppend(struct LogAppender* this0, struct LogEvent* ev) {
     }
 
     sprintf(format_buf, "%s [%s]: ", format_time, priority_names[ev->priority]); 
-    
-    // not sure what is the best way to handle FILE* ...
+   
+    if(this->to_stderr > 0 && this->file != stderr )
+    {
+        fprintf(stderr, "%s", format_buf);
+        fprintf(stderr, "%s:%d:, ev->fileName, ev->lineNum);
+        vfprintf(stderr, ev->fmt, ev->ap);
+        fprintf(stderr, "\n");
+    }
+ 
     fprintf(this->file, "%s", format_buf);
     fprintf(this->file, "%s:%d", ev->fileName, ev->lineNum);
     vfprintf(this->file, ev->fmt, ev->ap);

@@ -16,9 +16,12 @@ LOG_NEW_DEFAULT_CATEGORY(beacon);
 
 
 /*
- * INIT LOG WITH FILE NAME
+ * INIT LOG
+ * FILE* should be return from fopen with mode "a"
+ * priority value is based on LP_* define
+ * if to_stderr larger than 0, print log to stderr also.
  * */
-void bc_log_init(const char* path);
+void bc_log_init(FILE* file, int priority, int to_stderr);
 
 /*
  * SET CONFIG STRING LIKE THRESHOLD LEVEL
@@ -35,7 +38,40 @@ void bc_log(int priority, const char* msg);
 
 
 /*
+ * LOG TRACE
+ * */
+void bc_log_trace(const char* msg);
+
+
+/*
+ * LOG DEBUG
+ * */
+void bc_log_debug(const char* msg);
+
+
+/*
+ * LOG INFO
+ * */
+void bc_log_info(const char* msg);
+
+
+/*
+ * LOG WARNING
+ * */
+void bc_log_warning(const char* msg);
+
+
+/*
+ * LOG ERROR
+ * */
+void bc_log_error(const char* msg);
+
+
+
+
+/*
  * RELEASE LOG FILE
+ * FOR NOW THERE IS NOTHING TO BE DONE FOR CLOSE.
  * */
 void bc_log_close();
 
