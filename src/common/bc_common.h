@@ -12,6 +12,7 @@
 #include "./statistic/bc_statistic.h"
 #include "./algorithm/bc_algorithm.h"
 #include "./utility/bc_utility.h"
+#include "./logging/bc_logging.h"
 
 #endif /* __BC_COMMON_H__ */
 
