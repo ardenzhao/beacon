@@ -16,5 +16,7 @@ void test_algorithm();
 
 void test_utility();
 
+void test_logging(int priority);
+
 #endif /* __TEST_COMMON_H__ */
 

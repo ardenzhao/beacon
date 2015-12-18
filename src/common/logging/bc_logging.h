@@ -9,10 +9,11 @@
 #ifndef __BC_LOGGING_H__
 #define __BC_LOGGING_H__
 
+#include <stdio.h>
 #include "log4c.h"
 
-// make default log category for beacon, for now i didn't see any sub category needed.
-LOG_NEW_DEFAULT_CATEGORY(beacon);
+// need to create new default category for each process.
+#define BC_LOG_CATEGORY(category) LOG_NEW_DEFAULT_CATEGORY(category);
 
 
 /*
@@ -23,11 +24,11 @@ LOG_NEW_DEFAULT_CATEGORY(beacon);
  * */
 void bc_log_init(FILE* file, int priority, int to_stderr);
 
-/*
- * SET CONFIG STRING LIKE THRESHOLD LEVEL
- * */
-void bc_log_set(const char* config);
 
+/*
+ * CREATE NEW SUB CATEGORY
+ * */
+#define BC_LOG_NEW_SUBCATEGORY(category) LOG_NEW_SUBCATEGORY(category, beacon)
 
 /*
  * MAIN FUNCTION CALL FOR WRITE LOG
